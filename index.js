@@ -192,7 +192,7 @@ app.post('/loggingin', async (req, res) => {
 
 app.get('/loggedin', (req, res) => {
 	if (req.session.authenticated) {
-		res.redirect('/user');
+		res.redirect('/members');
 	} else {
 		res.redirect('/');
 	}
@@ -203,7 +203,7 @@ app.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
-app.get('/user', (req, res) => {
+app.get('/members', (req, res) => {
 	if (!req.session.authenticated) {
 		res.redirect('/');
 	} else {
