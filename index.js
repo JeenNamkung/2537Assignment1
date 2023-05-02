@@ -169,7 +169,7 @@ app.post('/loggingin', async (req, res) => {
 
 	console.log(result);
 	if (result.length === 0) {
-		res.send('<p>Invalid email or password.</p><a href="/login">try again</a>');
+		res.send('<p>Invalid password.</p><a href="/login">try again</a>');
 		return;
 	} else if (result.length != 1) {
 		res.redirect('/login');
