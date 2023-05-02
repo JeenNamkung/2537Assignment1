@@ -13,7 +13,7 @@ const app = express();
 
 const Joi = require('joi');
 
-const expireTime = 24 * 60 * 60 * 1000;
+const expireTime = 60 * 60 * 1000;
 
 const mongodb_host = process.env.MONGODB_HOST;
 const mongodb_user = process.env.MONGODB_USER;
@@ -169,7 +169,7 @@ app.post('/loggingin', async (req, res) => {
 
 	console.log(result);
 	if (result.length === 0) {
-		res.send('<p>Invalid email or password.</p><a href="/login">try again</a>');
+		res.send('<p>Invalid password.</p><a href="/login">try again</a>');
 		return;
 	} else if (result.length != 1) {
 		res.redirect('/login');
@@ -192,7 +192,7 @@ app.post('/loggingin', async (req, res) => {
 
 app.get('/loggedin', (req, res) => {
 	if (req.session.authenticated) {
-		res.redirect('/user');
+		res.redirect('/members');
 	} else {
 		res.redirect('/');
 	}
@@ -203,7 +203,7 @@ app.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
-app.get('/user', (req, res) => {
+app.get('/members', (req, res) => {
 	if (!req.session.authenticated) {
 		res.redirect('/login');
 	} else {
